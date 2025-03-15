@@ -1,0 +1,51 @@
+{
+    "id": "e2254af4-4f3e-4bf0-9d62-f2f0073dc148",
+    "name": "SilverBay",
+    "publisher": "Silver Bay",
+    "version": "1.1.250312.1",
+    "brief": "",
+    "description": "",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [
+        {
+            "id": "E7E4551C-46E4-40A0-98AA-D33DC1D10BDE",
+            "name": "Multi-Entity Management (NA)",
+            "publisher": "Binary Stream Software Inc.",
+            "version": "1.1.104.1"
+        },
+        {
+            "id": "069f3d48-1c17-459e-bbc6-3f00693bb507",
+            "publisher": "Equisys",
+            "name": "Zetadocs - AP automation and bulk emailing",
+            "version": "3.0.24080.20000"
+        },
+        {
+            "id": "7A129D06-5FD6-4FB6-B82B-0BF539C779D0",
+            "name": "_Exclude_Bank Deposits",
+            "publisher": "Microsoft",
+            "version": "23.5.16502.16887"
+        }
+    ],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "23.0.0.0",
+    "idRanges": [
+        {
+            "from": 50000,
+            "to": 59999
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "runtime": "12.0",
+    "features": [
+        "NoImplicitWith"
+    ]
+}

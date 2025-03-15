@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="No_SalesHeader">
+          <DataField>No_SalesHeader</DataField>
+        </Field>
+        <Field Name="CompanyInfoPicture">
+          <DataField>CompanyInfoPicture</DataField>
+        </Field>
+        <Field Name="CompanyAddress1">
+          <DataField>CompanyAddress1</DataField>
+        </Field>
+        <Field Name="CompanyAddress2">
+          <DataField>CompanyAddress2</DataField>
+        </Field>
+        <Field Name="CompanyAddress3">
+          <DataField>CompanyAddress3</DataField>
+        </Field>
+        <Field Name="CompanyAddress4">
+          <DataField>CompanyAddress4</DataField>
+        </Field>
+        <Field Name="CompanyAddress5">
+          <DataField>CompanyAddress5</DataField>
+        </Field>
+        <Field Name="CompanyAddress6">
+          <DataField>CompanyAddress6</DataField>
+        </Field>
+        <Field Name="CompanyAddress7">
+          <DataField>CompanyAddress7</DataField>
+        </Field>
+        <Field Name="CompanyAddress8">
+          <DataField>CompanyAddress8</DataField>
+        </Field>
+        <Field Name="ShipToAddress1">
+          <DataField>ShipToAddress1</DataField>
+        </Field>
+        <Field Name="ShipToAddress2">
+          <DataField>ShipToAddress2</DataField>
+        </Field>
+        <Field Name="ShipToAddress3">
+          <DataField>ShipToAddress3</DataField>
+        </Field>
+        <Field Name="ShipToAddress4">
+          <DataField>ShipToAddress4</DataField>
+        </Field>
+        <Field Name="ShipToAddress5">
+          <DataField>ShipToAddress5</DataField>
+        </Field>
+        <Field Name="ShipToAddress6">
+          <DataField>ShipToAddress6</DataField>
+        </Field>
+        <Field Name="ShipToAddress7">
+          <DataField>ShipToAddress7</DataField>
+        </Field>
+        <Field Name="ShipToAddress8">
+          <DataField>ShipToAddress8</DataField>
+        </Field>
+        <Field Name="LocationName">
+          <DataField>LocationName</DataField>
+        </Field>
+        <Field Name="TrafficPerson">
+          <DataField>TrafficPerson</DataField>
+        </Field>
+        <Field Name="BilltoCustNo_SalesHeader">
+          <DataField>BilltoCustNo_SalesHeader</DataField>
+        </Field>
+        <Field Name="SellToCustNo">
+          <DataField>SellToCustNo</DataField>
+        </Field>
+        <Field Name="ExtDocNo_SalesHeader">
+          <DataField>ExtDocNo_SalesHeader</DataField>
+        </Field>
+        <Field Name="OrderDate_SalesHeader">
+          <DataField>OrderDate_SalesHeader</DataField>
+        </Field>
+        <Field Name="ShptDate_SalesHeader">
+          <DataField>ShptDate_SalesHeader</DataField>
+        </Field>
+        <Field Name="ShipmentMethodCode_SalesHeader">
+          <DataField>ShipmentMethodCode_SalesHeader</DataField>
+        </Field>
+        <Field Name="ShippingAgentCode_SalesHeader">
+          <DataField>ShippingAgentCode_SalesHeader</DataField>
+        </Field>
+        <Field Name="ShippingAgentName">
+          <DataField>ShippingAgentName</DataField>
+        </Field>
+        <Field Name="SalesPurchPersonName">
+          <DataField>SalesPurchPersonName</DataField>
+        </Field>
+        <Field Name="ShipmentMethodDesc">
+          <DataField>ShipmentMethodDesc</DataField>
+        </Field>
+        <Field Name="PaymentTermsDesc">
+          <DataField>PaymentTermsDesc</DataField>
+        </Field>
+        <Field Name="SpotCount">
+          <DataField>SpotCount</DataField>
+        </Field>
+        <Field Name="SpotCountFormat">
+          <DataField>SpotCountFormat</DataField>
+        </Field>
+        <Field Name="PalletCount">
+          <DataField>PalletCount</DataField>
+        </Field>
+        <Field Name="FreightRate">
+          <DataField>FreightRate</DataField>
+        </Field>
+        <Field Name="FooterComment">
+          <DataField>FooterComment</DataField>
+        </Field>
+        <Field Name="TempSalesLine_LineType">
+          <DataField>TempSalesLine_LineType</DataField>
+        </Field>
+        <Field Name="TempSalesLineNo">
+          <DataField>TempSalesLineNo</DataField>
+        </Field>
+        <Field Name="TempSalesLineUOM">
+          <DataField>TempSalesLineUOM</DataField>
+        </Field>
+        <Field Name="TempSalesLineQuantity">
+          <DataField>TempSalesLineQuantity</DataField>
+        </Field>
+        <Field Name="TempSalesLineQuantityFormat">
+          <DataField>TempSalesLineQuantityFormat</DataField>
+        </Field>
+        <Field Name="TempSalesLineDesc">
+          <DataField>TempSalesLineDesc</DataField>
+        </Field>
+        <Field Name="TempSalesLineLot">
+          <DataField>TempSalesLineLot</DataField>
+        </Field>
+        <Field Name="TempSalesLineLotQty">
+          <DataField>TempSalesLineLotQty</DataField>
+        </Field>
+        <Field Name="TempSalesLineDocumentNo">
+          <DataField>TempSalesLineDocumentNo</DataField>
+        </Field>
+        <Field Name="TempSalesLineLineNo">
+          <DataField>TempSalesLineLineNo</DataField>
+        </Field>
+        <Field Name="TempSalesLineNetWeight">
+          <DataField>TempSalesLineNetWeight</DataField>
+        </Field>
+        <Field Name="TempSalesLineNetWeightFormat">
+          <DataField>TempSalesLineNetWeightFormat</DataField>
+        </Field>
+        <Field Name="TempSalesLinePackSize">
+          <DataField>TempSalesLinePackSize</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
