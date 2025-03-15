@@ -27,22 +27,22 @@ pageextension 50043 "OBF-Sales Journal" extends "Sales Journal"
         }
         addafter("Shortcut Dimension 1 Code")
         {
-            field(BssiEntityID;Rec.BssiEntityID)
-            {
-                ApplicationArea = all;
-                Editable = false;
-            }
-        }       
+            // field(BssiEntityID;Rec.BssiEntityID)
+            // {
+            //     ApplicationArea = all;
+            //     Editable = false;
+            // }
+        }
         addafter(Description)
         {
-            field("OBF-Site Code";Rec."OBF-Site Code")
+            field("OBF-Site Code"; Rec."OBF-Site Code")
             {
                 ApplicationArea = all;
             }
-            field("OBF-CIP Code";Rec."OBF-CIP Code")
+            field("OBF-CIP Code"; Rec."OBF-CIP Code")
             {
                 ApplicationArea = all;
-            }            
+            }
         }
     }
 }

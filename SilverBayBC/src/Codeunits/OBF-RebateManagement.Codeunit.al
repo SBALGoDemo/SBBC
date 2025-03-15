@@ -310,14 +310,14 @@ codeunit 50000 "OBF-Rebate Management"
         RebateEntry."Dimension Set ID" := pSalesLine."Dimension Set ID";
 
         // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1808 - Multi Entity Management Enhancements for Rebates 
-        RebateEntry."OBF-Entity ID" := pSalesLine."OBF-Header Subsidiary Code";      
-        
+        RebateEntry."OBF-Entity ID" := pSalesLine."OBF-Header Subsidiary Code";
+
         RebateEntry.UpdateRebateQuantity();
 
         // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1362 - Rebates Not Calculating Correctly for Credit Memos                
-        if pSalesLine."Document Type" in [pSalesLine."Document Type"::"Credit Memo",pSalesLine."Document Type"::"Return Order"] then begin
+        if pSalesLine."Document Type" in [pSalesLine."Document Type"::"Credit Memo", pSalesLine."Document Type"::"Return Order"] then begin
             RebateEntry."Rebate Quantity" := -RebateEntry."Rebate Quantity";
-            RebateEntry."Sales Line Amount" := - RebateEntry."Sales Line Amount";
+            RebateEntry."Sales Line Amount" := -RebateEntry."Sales Line Amount";
         end;
 
         RebateEntry.UpdateRebateAmount();
@@ -410,7 +410,7 @@ codeunit 50000 "OBF-Rebate Management"
                 if RebateLedgerEntry."Rebate Type" = RebateLedgerEntry."Rebate Type"::"Off-Invoice" then
                     RebateLedgerEntry."Posted to Customer" := true;
                 RebateLedgerEntry.Insert(true);
-            until(RebateEntry.Next()=0);
+            until (RebateEntry.Next() = 0);
 
     end;
 
@@ -449,11 +449,11 @@ codeunit 50000 "OBF-Rebate Management"
 
         // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1899 - Rebates - Mult Entiry Management Issue
         if RebateLedgerEntry.FindSet() then begin
-            GenJnlLine.SetRange("Journal Template Name",SalesSetup."OBF-Rebate Jnl. Template");
-            GenJnlLine.SetRange("Journal Batch Name",SalesSetup."OBF-Rebate Jnl. Batch");
+            GenJnlLine.SetRange("Journal Template Name", SalesSetup."OBF-Rebate Jnl. Template");
+            GenJnlLine.SetRange("Journal Batch Name", SalesSetup."OBF-Rebate Jnl. Batch");
             if GenJnlLine.FindLast() then
                 LineNo := GenJnlLine."Line No.";
-                
+
             repeat
                 RebateHeader.Get(RebateLedgerEntry."Rebate Code");
                 RebateHeader.TestField("Expense G/L Account");
@@ -471,8 +471,8 @@ codeunit 50000 "OBF-Rebate Management"
                 GenJnlLine.Insert();
 
                 // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1808 - Multi Entity Management Enhancements for Rebates 
-                GenJnlLine.validate("Shortcut Dimension 1 Code",RebateLedgerEntry."OBF-Entity ID");
-                GenJnlLine.validate(BssiEntityID, RebateLedgerEntry."OBF-Entity ID");
+                GenJnlLine.validate("Shortcut Dimension 1 Code", RebateLedgerEntry."OBF-Entity ID");
+                // GenJnlLine.validate(BssiEntityID, RebateLedgerEntry."OBF-Entity ID");
 
                 GenJnlLine."Account Type" := GenJnlLine."Account Type"::"G/L Account";
                 GenJnlLine."Account No." := RebateHeader."Expense G/L Account";
@@ -496,7 +496,7 @@ codeunit 50000 "OBF-Rebate Management"
                 GenJnlLine.Validate(Amount, RebateLedgerEntry."Rebate Amount");
                 GenJnlLine."OBF-Rebate Code" := RebateLedgerEntry."Rebate Code";
                 GenJnlLine."OBF-Rebate Ledger Entry No." := RebateLedgerEntry."Entry No.";
-                if RebateLedgerEntry."Rebate Type" = RebateLedgerEntry."Rebate Type"::"Off-Invoice" then begin 
+                if RebateLedgerEntry."Rebate Type" = RebateLedgerEntry."Rebate Type"::"Off-Invoice" then begin
                     if RebateLedgerEntry."Source Type" = RebateLedgerEntry."Source Type"::"Posted Invoice" then
                         GenJnlLine."Applies-to Doc. Type" := GenJnlLine."Applies-to Doc. Type"::Invoice
                     else
@@ -506,9 +506,9 @@ codeunit 50000 "OBF-Rebate Management"
                 GenJnlLine."Dimension Set ID" := RebateLedgerEntry."Dimension Set ID";
 
                 // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1899 - Rebates - Mult Entiry Management Issue
-                GenJnlLine."Bssi CenDec Entry" := true;
-                GenJnlLine.SetRange(BssiEntityID, RebateLedgerEntry."OBF-Entity ID");
-                
+                // GenJnlLine."Bssi CenDec Entry" := true;
+                // GenJnlLine.SetRange(BssiEntityID, RebateLedgerEntry."OBF-Entity ID");
+
                 GenJnlLine.Modify();
 
                 // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1899 - Rebates - Mult Entiry Management Issue
@@ -519,7 +519,7 @@ codeunit 50000 "OBF-Rebate Management"
 
             // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1899 - Rebates - Mult Entiry Management Issue
             if not SalesSetup."OBF-Enable Autopost OI Rebates" then
-                Message('You must manually post the off-invoice rebates in batch %1',SalesSetup."OBF-Rebate Jnl. Batch");
+                Message('You must manually post the off-invoice rebates in batch %1', SalesSetup."OBF-Rebate Jnl. Batch");
 
         end;
     end;
@@ -612,11 +612,11 @@ codeunit 50000 "OBF-Rebate Management"
             GenJnlLine."Dimension Set ID" := RebateLedgerEntry."Dimension Set ID";
 
             // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1808 - Multi Entity Management Enhancements for Rebates 
-            GenJnlLine.BssiEntityID := RebateLedgerEntry."OBF-Entity ID";
+            // GenJnlLine.BssiEntityID := RebateLedgerEntry."OBF-Entity ID";
 
             // https://odydev.visualstudio.com/ThePlan/_workitems/edit/2228 - Rebate Posting Issue
             GenJnlLine."Shortcut Dimension 1 Code" := RebateLedgerEntry."OBF-Entity ID";
-            
+
 
             GenJnlPostLine.RunWithCheck(GenJnlLine);
 

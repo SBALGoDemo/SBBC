@@ -93,7 +93,7 @@ codeunit 50120 "INVC WF PM Export Mgt."
 
     local procedure SetFilename(BalAccountNo: Code[20]): Text;
     begin
-        BankAccount."INVC Last WF Export File" := 'sbsl.' + Format(CurrentDateTime(), 0, '<Hours24,2><Minutes,2><Seconds,2>99<Year4><Month,2><Day,2>')+'.txt';
+        BankAccount."INVC Last WF Export File" := 'sbsl.' + Format(CurrentDateTime(), 0, '<Hours24,2><Minutes,2><Seconds,2>99<Year4><Month,2><Day,2>') + '.txt';
         BankAccount.Modify();
         exit(BankAccount."INVC Last WF Export File");
     end;
@@ -443,7 +443,7 @@ codeunit 50120 "INVC WF PM Export Mgt."
                 GenJnlLine2."Check Exported" := true;
                 GenJnlLine2."Document Type" := GenJnlLine2."Document Type"::Payment;
                 Evaluate(GenJnlLine2.Amount, TempBuffer.PAYAMT);
-                GenJnlLine2.Validate(Amount,-GenJnlLine2.Amount);
+                GenJnlLine2.Validate(Amount, -GenJnlLine2.Amount);
                 TempBuffer2.SetRange(TRANNO, TempBuffer.TRANNO);
                 if TempBuffer2.FindSet() then
                     repeat
@@ -460,7 +460,7 @@ codeunit 50120 "INVC WF PM Export Mgt."
                 GenJnlLine2."Line No." := LastLineNo + 250;
                 GenJnlLine2."Export File Name" := BankAccount."INVC Last WF Export File";
                 GenJnlLine2."Payment Related Information 1" := VendNo;
-                GenJnlLine2.BssiEntityID := GenJnlLine2."Shortcut Dimension 1 Code";
+                // GenJnlLine2.BssiEntityID := GenJnlLine2."Shortcut Dimension 1 Code";
                 GenJnlLine2.Insert();
             until TempBuffer.Next() = 0;
     end;

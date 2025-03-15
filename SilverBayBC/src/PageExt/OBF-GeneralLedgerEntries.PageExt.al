@@ -21,7 +21,7 @@ pageextension 50021 "OBF-General Ledger Entries" extends "General Ledger Entries
         // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1182 - Rebates
         addafter("External Document No.")
         {
-            field(SourceName;SourceName)
+            field(SourceName; SourceName)
             {
                 Caption = 'Source Name';
                 Editable = false;
@@ -37,7 +37,7 @@ pageextension 50021 "OBF-General Ledger Entries" extends "General Ledger Entries
             {
                 Caption = 'Rebate Ledger Entry No.';
                 Editable = false;
-                ApplicationArea = all;  
+                ApplicationArea = all;
                 trigger OnDrillDown()
                 var
                     RebateLedgerEntry: Record "OBF-Rebate Ledger Entry";
@@ -57,48 +57,48 @@ pageextension 50021 "OBF-General Ledger Entries" extends "General Ledger Entries
         {
 
             // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1769 - Create Subsidiary Site Trial Balance Report
-            field("OBF-Site Code";Rec."OBF-Site Code")
-            {
-                ApplicationArea = all;
-            }
-            
-            field(BssiEntityID;Rec.BssiEntityID)
-            {
-                ApplicationArea = all;
-            }
-            field(BssiDuetoDuefrom;Rec.BssiDuetoDuefrom)
-            {
-                ApplicationArea = all;
-            }
-            field("Bssi IC Settlement";Rec."Bssi IC Settlement")
-            {
-                ApplicationArea = all;
-            }
-            field(BssiICDestEntity;Rec.BssiICDestEntity)
-            {
-                ApplicationArea = all;
-            }
-            field(BssiReportAmount;Rec.BssiReportAmount)
+            field("OBF-Site Code"; Rec."OBF-Site Code")
             {
                 ApplicationArea = all;
             }
 
+            // field(BssiEntityID;Rec.BssiEntityID)
+            // {
+            //     ApplicationArea = all;
+            // }
+            // field(BssiDuetoDuefrom;Rec.BssiDuetoDuefrom)
+            // {
+            //     ApplicationArea = all;
+            // }
+            // field("Bssi IC Settlement";Rec."Bssi IC Settlement")
+            // {
+            //     ApplicationArea = all;
+            // }
+            // field(BssiICDestEntity;Rec.BssiICDestEntity)
+            // {
+            //     ApplicationArea = all;
+            // }
+            // field(BssiReportAmount;Rec.BssiReportAmount)
+            // {
+            //     ApplicationArea = all;
+            // }
+
             // https://odydev.visualstudio.com/ThePlan/_workitems/edit/2106 - G/L Entry Invalid Subsidiary and Site Combinations
-            field("OBF-Site Code Issue";Rec."OBF-Site Code Issue")
+            field("OBF-Site Code Issue"; Rec."OBF-Site Code Issue")
             {
                 ApplicationArea = all;
             }
-            field(SystemCreatedAt;Rec.SystemCreatedAt)
+            field(SystemCreatedAt; Rec.SystemCreatedAt)
             {
                 ApplicationArea = all;
             }
-            field(SystemCreatedBy;Rec.SystemCreatedBy)
+            field(SystemCreatedBy; Rec.SystemCreatedBy)
             {
                 ApplicationArea = all;
             }
-            
+
         }
-        
+
     }
 
     var
@@ -109,17 +109,19 @@ pageextension 50021 "OBF-General Ledger Entries" extends "General Ledger Entries
     var
         Customer: Record Customer;
         Vendor: Record Vendor;
-    begin 
+    begin
         SourceName := '';
         case Rec."Source Type" of
-            Rec."Source Type"::Customer : Begin
-                if Customer.Get(Rec."Source No.") then
-                    SourceName := Customer.Name;
-            End;
-            Rec."Source Type"::Vendor : Begin 
-                if Vendor.Get(Rec."Source No.") then
-                    SourceName := Vendor.Name;           
-            End;
-        end; 
+            Rec."Source Type"::Customer:
+                Begin
+                    if Customer.Get(Rec."Source No.") then
+                        SourceName := Customer.Name;
+                End;
+            Rec."Source Type"::Vendor:
+                Begin
+                    if Vendor.Get(Rec."Source No.") then
+                        SourceName := Vendor.Name;
+                End;
+        end;
     end;
 }

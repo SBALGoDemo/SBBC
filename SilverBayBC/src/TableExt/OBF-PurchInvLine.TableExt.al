@@ -47,17 +47,17 @@ tableextension 50010 "OBF-Purch. Inv. Line" extends "Purch. Inv. Line"
         field(50011; "OBF-Is Multi-Entity"; Boolean)
         {
             Caption = 'Is Multi-Entity';
-            FieldClass = FlowField;
-            CalcFormula = exist("G/L Entry" where("Document No." = field("Document No."),BssiDuetoDuefrom=const(true)));
+            // FieldClass = FlowField;
+            // CalcFormula = exist("G/L Entry" where("Document No." = field("Document No."),BssiDuetoDuefrom=const(true)));
             Editable = false;
         }
         field(50012; "OBF-Multi-Entity Entries"; Integer)
         {
             Caption = 'Multi-Entity Entries';
-            FieldClass = FlowField;
-            CalcFormula = Count("G/L Entry" where("Document No." = field("Document No."),BssiDuetoDuefrom=const(true)));
+            // FieldClass = FlowField;
+            // CalcFormula = Count("G/L Entry" where("Document No." = field("Document No."),BssiDuetoDuefrom=const(true)));
             Editable = false;
         }
-                         
+
     }
 }

@@ -60,7 +60,7 @@ table 50006 "OBF-Payment Import Buffer"
         field(110; Memo; Text[1000])
         {
             Caption = 'Memo/Description';
-        } 
+        }
 
         field(120; Amount; Decimal)
         {
@@ -127,21 +127,21 @@ table 50006 "OBF-Payment Import Buffer"
         repeat
             PaymentImportBuffer."Document Type" := PaymentImportBuffer."Document Type"::Invoice;
             PaymentImportBuffer."Vendor No." := Vendor.FindVendorNoFromOurAccountNo("Our Account No.");
-            PaymentImportBuffer."Subsidiary Code" := DimensionValue.FindSubsidiaryFromCoupaID(PaymentImportBuffer."Subsidiary Text"); 
+            PaymentImportBuffer."Subsidiary Code" := DimensionValue.FindSubsidiaryFromCoupaID(PaymentImportBuffer."Subsidiary Text");
             PaymentImportBuffer.Modify();
-            Num += 1;           
+            Num += 1;
         until (PaymentImportBuffer.Next() = 0);
         Message('%1 records were updated', Num);
     end;
-  
+
 
     procedure CreateGenJournalLines(JournalBatchName: Code[10])
     var
-        GenJournalLine:  Record "Gen. Journal Line";
+        GenJournalLine: Record "Gen. Journal Line";
         PaymentImportBuffer: Record "OBF-Payment Import Buffer";
-        LineNo: integer;        
-    begin 
-        PaymentImportBuffer.SetFilter("Vendor No.",'<>%1','');
+        LineNo: integer;
+    begin
+        PaymentImportBuffer.SetFilter("Vendor No.", '<>%1', '');
         PaymentImportBuffer.FindSet();
         LineNo := 0;
         repeat
@@ -156,24 +156,24 @@ table 50006 "OBF-Payment Import Buffer"
             else if PaymentImportBuffer."External ID" <> '' then
                 GenJournalLine."Document No." := PaymentImportBuffer."External ID"
             else
-                GenJournalLine."Document No." := PaymentImportBuffer."Reference No.";           
+                GenJournalLine."Document No." := PaymentImportBuffer."Reference No.";
             GenJournalLine."External Document No." := PaymentImportBuffer."Reference No.";
             GenJournalLine."Account Type" := GenJournalLine."Account Type"::Vendor;
-            GenJournalLine.validate("Account No.",PaymentImportBuffer."Vendor No.");
-            GenJournalLine.Validate(Amount,-PaymentImportBuffer.Amount);
+            GenJournalLine.validate("Account No.", PaymentImportBuffer."Vendor No.");
+            GenJournalLine.Validate(Amount, -PaymentImportBuffer.Amount);
             GenJournalLine."Bal. Account Type" := GenJournalLine."Bal. Account Type"::"G/L Account";
             GenJournalLine."Bal. Account No." := PaymentImportBuffer."G/L Account No.";
-            GenJournalLine.validate("Shortcut Dimension 1 Code",PaymentImportBuffer."Subsidiary Code");
-            GenJournalLine.Validate(BssiEntityID,PaymentImportBuffer."Subsidiary Code");
+            GenJournalLine.validate("Shortcut Dimension 1 Code", PaymentImportBuffer."Subsidiary Code");
+            // GenJournalLine.Validate(BssiEntityID,PaymentImportBuffer."Subsidiary Code");
             GenJournalLine.Comment := PaymentImportBuffer.Memo;
             if PaymentImportBuffer.Memo <> '' then
-                GenJournalLine.Description := copystr(PaymentImportBuffer.Memo,1,100)
-            else begin 
+                GenJournalLine.Description := copystr(PaymentImportBuffer.Memo, 1, 100)
+            else begin
                 PaymentImportBuffer.CalcFields("Vendor Name");
                 GenJournalLine.Description := PaymentImportBuffer."Vendor Name";
             end;
-            GenJournalLine.Insert();           
-        until ( PaymentImportBuffer.Next() = 0);
+            GenJournalLine.Insert();
+        until (PaymentImportBuffer.Next() = 0);
         message('Done');
     end;
 

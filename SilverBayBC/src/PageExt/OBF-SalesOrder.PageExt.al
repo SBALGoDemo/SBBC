@@ -5,8 +5,8 @@ pageextension 50041 "OBF-Sales Order" extends "Sales Order"
     layout
     {
         modify("Sell-to Contact") { Visible = false; }
-        modify(BssiMEMInterEntity) { Visible = false; }
-        modify(BssiAllocationTemplateId) { Visible = false; }
+        // modify(BssiMEMInterEntity) { Visible = false; }
+        // modify(BssiAllocationTemplateId) { Visible = false; }
 
         // https://odydev.visualstudio.com/ThePlan/_workitems/edit/1700 - "Your Reference" and "External Document No." Usage
         movebefore("External Document No."; "Your Reference")

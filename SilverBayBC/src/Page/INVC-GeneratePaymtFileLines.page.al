@@ -112,7 +112,7 @@ page 50121 "INVC Generate Paymt File Lines"
         if Rec.FindFirst() then
             repeat
                 TempExportWorkset.TransferFields(Rec);
-                TempExportWorkset.BssiEntityId := Rec."Subsidiary Code";
+                // TempExportWorkset.BssiEntityId := Rec."Subsidiary Code";
                 TempExportWorkset.Insert();
             until Rec.Next() = 0;
         Rec.Reset();
