@@ -5,6 +5,9 @@
         },
         {
             "path": "SilverBayBC"
+        },
+        {
+            "path": ".github"
         }
     ],
     "settings": {}
